@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     element: <Classroom />,
   },
   {
-    path: '/student/:studentId',
+    path: '/students/:studentId',
     element: <Student />,
   },
 ]);

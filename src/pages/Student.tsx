@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { editStudent, selectEditingStudent } from 'src/reducers/students';
 import { IStudentRouteParams } from 'src/router';
 
@@ -16,7 +16,12 @@ const Student: React.FC = () => {
     }
   }, [studentId]);
 
-  return <div>{`Student: ${student?.firstname} ${student?.lastname}`}</div>;
+  return (
+    <div>
+      <Link to="/">Retour</Link>
+      <div>{`Student: ${student?.firstname} ${student?.lastname}`}</div>
+    </div>
+  );
 };
 
 export default Student;
