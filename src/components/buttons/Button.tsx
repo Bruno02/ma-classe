@@ -1,11 +1,20 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button`
-  height: 50;
-  width: 100%;
-  box-shadow: 10px 5px 5px gray;
-  background-color: purple;
+interface IButton {
+  isDisabled?: boolean;
+}
+const Button = styled.button<IButton>`
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  background-color: ${(props) =>
+    props.isDisabled ? 'lightgray' : 'royalblue'};
+  color: white;
+  border: 0;
+  cursor: ${(props) => (props.isDisabled ? 'mouse' : 'pointer')};
 `;
 
 export { Button };
