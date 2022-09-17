@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link } from 'src/components/links';
+import { H1, H3 } from 'src/components/texts';
 import { selectStudents } from 'src/reducers/students';
 
 const Classroom: React.FC = () => {
@@ -8,10 +9,10 @@ const Classroom: React.FC = () => {
 
   return (
     <div>
-      <h1>Class room</h1>
+      <H1>Class room</H1>
       {students.map((student) => (
         <Link to={`/students/${student.id}`} key={student.id}>
-          <div>{`${student.firstname} ${student.lastname}`}</div>
+          <H3>{`${student.firstname} ${student.lastname}`}</H3>
         </Link>
       ))}
     </div>
