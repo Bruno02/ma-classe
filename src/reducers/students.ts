@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { STUDENTS } from 'src/data/students';
 import { RootState } from 'src/store';
 
 const NAME = 'students';
 
 export interface IStudent {
-  id?: number;
+  id?: string;
   firstname: string;
   lastname: string;
   address: string;
@@ -16,7 +17,7 @@ export interface IState {
 }
 
 const initialState: IState = {
-  students: [],
+  students: STUDENTS,
 };
 
 export const slice = createSlice({
@@ -28,7 +29,7 @@ export const slice = createSlice({
       state.students = [
         ...state.students,
         {
-          id: Date.now(),
+          id: `${Date.now()}`,
           ...student,
         },
       ];
@@ -43,14 +44,15 @@ export const slice = createSlice({
       const student = action.payload;
       state.students = state.students.filter((std) => std.id !== student.id);
     },
-    editStudent: (state, action: PayloadAction<number>) => {
+    editStudent: (state, action: PayloadAction<string>) => {
       const studentId = action.payload;
       state.editingStudent = state.students.find((std) => std.id === studentId);
     },
   },
 });
 
-export const { createStudent } = slice.actions;
+export const { createStudent, updateStudent, deleteStudent, editStudent } =
+  slice.actions;
 
 export const selectStudents = (state: RootState) => state.students.students;
 export const selectEditingStudent = (state: RootState) =>
