@@ -14,7 +14,12 @@ const Button = styled.button<IButton>`
     props.isDisabled ? 'lightgray' : 'royalblue'};
   color: white;
   border: 0;
+  border-radius: 4px;
   cursor: ${(props) => (props.isDisabled ? 'mouse' : 'pointer')};
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(${(props) => (props.isDisabled ? 1 : 1.05)});
+  }
 `;
 
 export { Button };
