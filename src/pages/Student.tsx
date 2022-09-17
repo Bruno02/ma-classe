@@ -6,14 +6,18 @@ import { Input } from 'src/components/input';
 import { Link } from 'src/components/links';
 import { H3 } from 'src/components/texts';
 import {
+  createStudent,
   editStudent,
   selectEditingStudent,
   updateStudent,
 } from 'src/reducers/students';
 import { IStudentRouteParams } from 'src/router';
 
+export const NEW_STUDENT = 'new';
+
 const Student: React.FC = () => {
   const { studentId } = useParams<IStudentRouteParams>();
+  const creationMode = studentId === NEW_STUDENT;
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -26,13 +30,13 @@ const Student: React.FC = () => {
   const [canValidate, setCanValidate] = useState(false);
 
   useEffect(() => {
-    if (studentId) {
+    if (!creationMode && studentId) {
       dispatch(editStudent(studentId));
     }
   }, [studentId]);
 
   useEffect(() => {
-    if (student) {
+    if (!creationMode && student) {
       setFirstname(student.firstname);
       setLastname(student.lastname);
       setAddress(student.address);
@@ -40,7 +44,7 @@ const Student: React.FC = () => {
   }, [student]);
 
   useEffect(() => {
-    setCanValidate(!!firstname && !!lastname);
+    setCanValidate(!!firstname && !!lastname && !!address);
   }, [firstname, lastname, address]);
 
   const handleOnChange =
@@ -54,12 +58,18 @@ const Student: React.FC = () => {
     }
 
     dispatch(
-      updateStudent({
-        id: studentId,
-        firstname,
-        lastname,
-        address,
-      })
+      creationMode
+        ? createStudent({
+            firstname,
+            lastname,
+            address,
+          })
+        : updateStudent({
+            id: studentId,
+            firstname,
+            lastname,
+            address,
+          })
     );
 
     navigate('/');
@@ -89,7 +99,7 @@ const Student: React.FC = () => {
         />
       </div>
       <Button onClick={handleOnValidate} isDisabled={!canValidate}>
-        Valider
+        {creationMode ? 'Ajouter' : 'Modifier'}
       </Button>
     </div>
   );
