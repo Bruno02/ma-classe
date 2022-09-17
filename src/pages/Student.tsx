@@ -25,9 +25,9 @@ const Student: React.FC = () => {
   const dispatch = useDispatch();
   const student = useSelector(selectEditingStudent);
 
-  const [firstname, setFirstname] = useState<string>();
-  const [lastname, setLastname] = useState<string>();
-  const [address, setAddress] = useState<string>();
+  const [firstname, setFirstname] = useState<string>('');
+  const [lastname, setLastname] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
 
   const [canValidate, setCanValidate] = useState(false);
 
@@ -50,12 +50,14 @@ const Student: React.FC = () => {
   }, [firstname, lastname, address]);
 
   const handleOnChange =
-    (action: React.Dispatch<React.SetStateAction<string | undefined>>) =>
+    (action: React.Dispatch<React.SetStateAction<string>>) =>
     (event: React.ChangeEvent<HTMLInputElement>) =>
       action(event.target.value);
 
-  const handleOnValidate = () => {
-    if (!firstname || !lastname || !address) {
+  const handleOnValidate = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    if (!firstname.length || !lastname.length || !address.length) {
       return;
     }
 
@@ -100,7 +102,11 @@ const Student: React.FC = () => {
           onChange={handleOnChange(setAddress)}
         />
         <br />
-        <Button onClick={handleOnValidate} disabled={!canValidate}>
+        <Button
+          onClick={handleOnValidate}
+          type="submit"
+          disabled={!canValidate}
+        >
           {creationMode ? 'Ajouter' : 'Modifier'}
         </Button>
       </Form>
