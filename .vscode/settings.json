@@ -1,0 +1,16 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.tabSize": 2,
+    "terminal.integrated.profiles.osx": {
+      "zsh": {
+        "path": "zsh",
+        "args": ["-i"]
+      }
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "git.autofetch": true
+  }
+  
+  
