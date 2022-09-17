@@ -100,7 +100,7 @@ const Student: React.FC = () => {
           onChange={handleOnChange(setAddress)}
         />
         <br />
-        <Button onClick={handleOnValidate} isDisabled={!canValidate}>
+        <Button onClick={handleOnValidate} disabled={!canValidate}>
           {creationMode ? 'Ajouter' : 'Modifier'}
         </Button>
       </Form>
