@@ -2,8 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'src/components/buttons';
+import { Page } from 'src/components/layout';
 import { Link } from 'src/components/links';
-import { H1, H3 } from 'src/components/texts';
+import { Row } from 'src/components/list';
+import { H1 } from 'src/components/texts';
 import { selectStudents } from 'src/reducers/students';
 import { NEW_STUDENT } from './Student';
 
@@ -14,15 +16,15 @@ const Classroom: React.FC = () => {
   const handleAddStudent = () => navigate(`/students/${NEW_STUDENT}`);
 
   return (
-    <div>
+    <Page>
       <H1>Ma classe</H1>
       <Button onClick={handleAddStudent}>Ajouter un élève</Button>
       {students.map((student) => (
         <Link to={`/students/${student.id}`} key={student.id}>
-          <H3>{`${student.firstname} ${student.lastname}`}</H3>
+          <Row animated>{`${student.firstname} ${student.lastname}`}</Row>
         </Link>
       ))}
-    </div>
+    </Page>
   );
 };
 
