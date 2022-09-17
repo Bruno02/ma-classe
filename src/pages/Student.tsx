@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'src/components/buttons';
+import { Form } from 'src/components/form';
 import { Input } from 'src/components/input';
+import { Page } from 'src/components/layout';
 import { Link } from 'src/components/links';
-import { H3 } from 'src/components/texts';
+import { H1, H3 } from 'src/components/texts';
 import {
   createStudent,
   editStudent,
@@ -76,12 +78,12 @@ const Student: React.FC = () => {
   };
 
   return (
-    <div>
+    <Page>
       <Link to="/">
-        <H3>Retour</H3>
+        <H3>{`← Retour`}</H3>
       </Link>
-      <H3>{`Student: ${student?.firstname} ${student?.lastname}`}</H3>
-      <div>
+      <H1>{creationMode ? 'Nouvel élève' : `${firstname} ${lastname}`}</H1>
+      <Form>
         <Input
           placeholder="Prénom"
           value={firstname}
@@ -97,11 +99,12 @@ const Student: React.FC = () => {
           value={address}
           onChange={handleOnChange(setAddress)}
         />
-      </div>
-      <Button onClick={handleOnValidate} isDisabled={!canValidate}>
-        {creationMode ? 'Ajouter' : 'Modifier'}
-      </Button>
-    </div>
+        <br />
+        <Button onClick={handleOnValidate} isDisabled={!canValidate}>
+          {creationMode ? 'Ajouter' : 'Modifier'}
+        </Button>
+      </Form>
+    </Page>
   );
 };
 
