@@ -20,12 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-      "paths": {
-        "src/*": ["./src/*"],
-        "components/*": ["./src/components/*"],
-        "reducers/*": ["./src/reducers/*"],
-        "pages/*": ["./src/pages/*"],
-      }
+    "paths": {
+      "src/*": ["./src/*"],
+      "components/*": ["./src/components/*"],
+      "reducers/*": ["./src/reducers/*"],
+      "pages/*": ["./src/pages/*"],
+      "router/*": ["./src/router/*"],
+    }
   },
   "include": [
     "src"
