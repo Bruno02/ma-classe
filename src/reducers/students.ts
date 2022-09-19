@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { sortBy } from 'lodash';
 import { STUDENTS } from 'src/data/students';
 import { RootState } from 'src/store';
 
@@ -54,7 +55,8 @@ export const slice = createSlice({
 export const { createStudent, updateStudent, deleteStudent, editStudent } =
   slice.actions;
 
-export const selectStudents = (state: RootState) => state.students.students;
+export const selectStudents = (state: RootState) =>
+  sortBy(state.students.students, ['firstname', 'lastname']);
 export const selectEditingStudent = (state: RootState) =>
   state.students.editingStudent;
 
