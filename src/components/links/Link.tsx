@@ -5,8 +5,15 @@ const styles: CSSProperties = {
   textDecoration: 'none',
 };
 
-const Link: React.FC<LinkProps> = ({ children, ...props }) => (
-  <RRLink {...props} style={styles}>
+interface ILink {
+  fullWidth?: boolean;
+}
+const Link: React.FC<LinkProps & ILink> = ({
+  children,
+  fullWidth = false,
+  ...props
+}) => (
+  <RRLink {...props} style={{ ...styles, width: fullWidth ? '100%' : 'auto' }}>
     {children}
   </RRLink>
 );
