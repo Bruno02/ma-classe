@@ -16,7 +16,7 @@ const IconButton = styled.button`
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   transition: transform 0.2s;
   &:hover {
-    transform: scale(${(props) => (props.disabled ? 1 : 1.05)});
+    opacity: 0.5;
   }
 `;
 
